@@ -1,7 +1,0 @@
-server:
-  port: 8181
-spring:
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/songflow
-      uuid-representation: standard
