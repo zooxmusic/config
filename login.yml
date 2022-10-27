@@ -1,0 +1,42 @@
+server:
+  port: 8080
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          gateway:
+            provider: uaa
+            client-id: gateway
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri-template: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope: openid,profile,email,resource.read
+        provider:
+          uaa:
+            authorization-uri: http://localhost:8090/uaa/oauth/authorize
+            token-uri: http://uaa:8090/uaa/oauth/token
+            user-info-uri: http://uaa:8090/uaa/userinfo
+            user-name-attribute: sub
+            jwk-set-uri: http://uaa:8090/uaa/token_keys
+          google:
+            client-id: 840308083066-rol7q56c7u7jleava7tmsmb8gjctfc72.apps.googleusercontent.com
+            client-secret: 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
+          github:
+            client-id: af3b72b192c91e932238
+            client-secret: c9a34a8f81d6a315e656c3c02f18ed1fbc512328
+          facebook:
+            client-id: 491689749528187
+            client-secret: a4c1956e439b7b2710f2c13d484a404c
+          spring:
+            authorization-uri: http://localhost:9000/oauth2/authorize
+            token-uri: http://localhost:9000/oauth2/token
+            jwk-set-uri: http://localhost:9000/oauth2/jwks
+
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+#    org.springframework.boot.autoconfigure: DEBUG
